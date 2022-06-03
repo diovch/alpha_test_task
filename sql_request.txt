@@ -1,0 +1,4 @@
+SELECT max(rate)
+FROM currency_rates
+WHERE currency_name="USDRUB" AND
+      date BETWEEN "2022-05-15" AND "2022-06-01";
