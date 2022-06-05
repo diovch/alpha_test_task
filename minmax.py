@@ -12,7 +12,12 @@ def get_min_max(currency: str, start_date: str, end_date) -> list:
         return cursor.execute(ins, (currency, start_date, end_date)).fetchone()
 
 
-def minmax(inputs: list[str]) -> None:
+def minmax(inputs: list[str]) -> dict:
     currency, start_date, end_date = parse_inputs(inputs)
     min_rate, max_rate = get_min_max(currency, start_date, end_date)
-    print(f'MIN = {min_rate}\nMAX = {max_rate}')
+    return {"min": min_rate, "max": max_rate}
+
+
+def console_minmax(inputs: list[str]) -> None:
+    temp = minmax(inputs)
+    print(f'MIN = {temp.get("min")}\nMAX = {temp.get("max")}')

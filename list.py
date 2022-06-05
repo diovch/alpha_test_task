@@ -18,12 +18,18 @@ def get_notes_count(inp: str) -> int:
     return int(inp.lstrip('--limit='))
 
 
-def list_notes(inputs: list[str]):
+def list_notes(inputs: list[str]) -> list:
     currency, start_date, end_date = parse_inputs(inputs[:3])
 
     notes = get_notes_from_table(currency, start_date, end_date, get_notes_count(inputs[-1])) \
         if len(inputs) == 4 else \
         get_notes_from_table(currency, start_date, end_date)
+
+    return notes
+
+
+def console_list_notes(inputs: list[str]) -> None:
+    notes = list_notes(inputs)
 
     print(f'Count = {len(notes)}')
     for i, note in enumerate(notes, start=1):
